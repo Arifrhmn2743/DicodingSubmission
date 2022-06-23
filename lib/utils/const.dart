@@ -28,18 +28,4 @@ var raisedDecoration = BoxDecoration(
   border: Border.all(
     color: Color.fromARGB(15, 220, 219, 219),
   ),
-  // boxShadow: const [
-  //   BoxShadow(
-  //     color: Colors.black26,
-  //     offset: Offset(5, 2),
-  //     blurRadius: 3.0,
-  //     spreadRadius: 0.0,
-  //   ),
-  //   BoxShadow(
-  //     color: Colors.white,
-  //     offset: Offset(-5, -2),
-  //     blurRadius: 3.0,
-  //     spreadRadius: 0.0,
-  //   ),
-  // ]
 );
