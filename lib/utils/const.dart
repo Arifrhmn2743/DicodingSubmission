@@ -22,6 +22,23 @@ const TextStyle bigBoldTextStyle = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w800,
 );
+
+const TextStyle regularWhiteTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 12,
+  fontWeight: FontWeight.w400,
+);
+
+const TextStyle titleWhiteTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+);
+const TextStyle bigBoldWhiteTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 20,
+  fontWeight: FontWeight.w800,
+);
 var raisedDecoration = BoxDecoration(
   color: Color.fromARGB(255, 231, 231, 231),
   borderRadius: BorderRadius.circular(16),

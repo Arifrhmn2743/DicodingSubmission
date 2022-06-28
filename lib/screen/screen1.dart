@@ -80,7 +80,6 @@ class _Screen1State extends State<Screen1> {
                           ),
                         ),
                       ),
-                      //233551
                       Spacer(),
                       GestureDetector(
                         onTap: () {
