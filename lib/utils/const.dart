@@ -46,3 +46,8 @@ var raisedDecoration = BoxDecoration(
     color: Color.fromARGB(15, 220, 219, 219),
   ),
 );
+
+//please use your legal api from https://api.nasa.gov/
+const String apiKey = "bXxhKpHeLZRUbf1Iteh7wkTNiMgQGQSpAsvbCnI8";
+
+const String linkApi = "https://api.nasa.gov/planetary/apod/";

@@ -1,8 +1,10 @@
 import 'package:explore_universe/provider/mainProvider.dart';
+import 'package:explore_universe/screen/apod.dart';
 import 'package:explore_universe/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class Screen2 extends StatefulWidget {
@@ -92,15 +94,27 @@ class _Screen2State extends State<Screen2> {
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/bg_cards4.jpg"),
-                              fit: BoxFit.fill),
+                      GestureDetector(
+                        onTap: () => Get.to(Apod()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage("assets/images/bg_cards4.jpg"),
+                                fit: BoxFit.fill,
+                                opacity: .8),
+                          ),
+                          height: 150,
+                          width: double.infinity,
+                          child: Center(
+                            child: Text(
+                              "APOD (Astronomy Picture of the Day)",
+                              style: bigBoldWhiteTextStyle,
+                            ),
+                          ),
                         ),
-                        height: 150,
                       )
                     ],
                   ),

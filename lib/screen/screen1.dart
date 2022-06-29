@@ -20,20 +20,48 @@ class Screen1 extends StatefulWidget {
 class _Screen1State extends State<Screen1> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bg.png"),
-                fit: BoxFit.cover,
+    return Consumer<MainProvider>(builder: (context, value, child) {
+      return Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Color.fromARGB(255, 64, 20, 140),
+          onPressed: () {
+            if (value.rocketName == "") {
+              Get.defaultDialog(
+                title: "Warning!",
+                middleText: "Rocket name cannot be empty ",
+              );
+            } else {
+              Get.to(Screen2());
+            }
+          },
+          label: Row(
+            children: [
+              Text(
+                "Next Step",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.0,
+                ),
+              ),
+              SizedBox(width: 10),
+              Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              )
+            ],
+          ),
+        ),
+        body: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/bg.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Consumer<MainProvider>(builder: (context, value, child) {
-            return SafeArea(
+            SafeArea(
                 child: Column(
               children: [
                 LottieBuilder.asset("assets/images/universe.json"),
@@ -80,67 +108,14 @@ class _Screen1State extends State<Screen1> {
                           ),
                         ),
                       ),
-                      Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          if (value.rocketName == "") {
-                            Get.defaultDialog(
-                              title: "Warning!",
-                              middleText: "Rocket name cannot be empty ",
-                            );
-                          } else {
-                            Get.to(Screen2());
-                          }
-                        },
-                        child: Align(
-                          alignment: FractionalOffset.bottomCenter,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 64, 20, 140),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(40.0)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black12.withOpacity(0.08),
-                                    blurRadius: 10.0,
-                                    spreadRadius: 3.0,
-                                  )
-                                ]),
-                            width: size.width / 2,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Next Step",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15.0,
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ))
               ],
-            ));
-          })
-        ],
-      ),
-    );
+            ))
+          ],
+        ),
+      );
+    });
   }
 }
