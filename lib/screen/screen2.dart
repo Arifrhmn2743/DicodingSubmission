@@ -1,6 +1,7 @@
 import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/screen/apod.dart';
 import 'package:explore_universe/screen/references.dart';
+import 'package:explore_universe/screen/solarSystem/solarSystemPage.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -81,17 +82,20 @@ class _Screen2State extends State<Screen2> {
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/images/solar_system.png"),
-                                fit: BoxFit.fill,
-                                opacity: .8),
+                        GestureDetector(
+                          onTap: () => Get.to(SolarSystemPage()),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/images/solar_system.png"),
+                                  fit: BoxFit.fill,
+                                  opacity: .8),
+                            ),
+                            height: 150,
                           ),
-                          height: 150,
                         ),
                         SizedBox(
                           height: 20,

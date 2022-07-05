@@ -50,4 +50,7 @@ var raisedDecoration = BoxDecoration(
 //please use your legal api from https://api.nasa.gov/
 const String apiKey = "bXxhKpHeLZRUbf1Iteh7wkTNiMgQGQSpAsvbCnI8";
 
-const String linkApi = "https://api.nasa.gov/planetary/apod/";
+const String linkApiApod = "https://api.nasa.gov/planetary/apod/";
+
+const String linkApiPlanetDetail =
+    "https://api.le-systeme-solaire.net/rest/bodies";
