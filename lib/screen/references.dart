@@ -29,11 +29,11 @@ class _ReferencesState extends State<References> {
     return Scaffold(
       backgroundColor: ColorPallet.darkPurple,
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
                     Text(
@@ -129,9 +129,9 @@ class _ReferencesState extends State<References> {
                     ),
                   ],
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

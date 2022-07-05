@@ -21,13 +21,13 @@ class _Screen2State extends State<Screen2> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorPallet.darkPurple,
-        body: SafeArea(
-          child: Column(
-            children: [
-              Consumer<MainProvider>(builder: (context, value, child) {
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: [
+                Consumer<MainProvider>(builder: (context, value, child) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -120,10 +120,10 @@ class _Screen2State extends State<Screen2> {
                         )
                       ],
                     ),
-                  ),
-                );
-              })
-            ],
+                  );
+                })
+              ],
+            ),
           ),
         ));
   }
