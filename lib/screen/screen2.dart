@@ -1,5 +1,6 @@
 import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/screen/apod.dart';
+import 'package:explore_universe/screen/blackHole/blackHolePage.dart';
 import 'package:explore_universe/screen/references.dart';
 import 'package:explore_universe/screen/solarSystem/solarSystemPage.dart';
 import 'package:explore_universe/utils/colors.dart';
@@ -67,17 +68,25 @@ class _Screen2State extends State<Screen2> {
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image:
-                                    AssetImage("assets/images/black_hole.png"),
-                                fit: BoxFit.fill,
-                                opacity: .8),
-                          ),
-                          height: 150,
+                        GestureDetector(
+                          onTap: () => Get.to(BlackHolePage()),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/black_hole.png"),
+                                    fit: BoxFit.fill,
+                                    opacity: .5),
+                              ),
+                              height: 150,
+                              child: Center(
+                                child: Text(
+                                  "Black Hole",
+                                  style: bigBoldWhiteTextStyle,
+                                ),
+                              )),
                         ),
                         SizedBox(
                           height: 20,
@@ -92,9 +101,15 @@ class _Screen2State extends State<Screen2> {
                                   image: AssetImage(
                                       "assets/images/solar_system.png"),
                                   fit: BoxFit.fill,
-                                  opacity: .8),
+                                  opacity: .5),
                             ),
                             height: 150,
+                            child: Center(
+                              child: Text(
+                                "Solar System ",
+                                style: bigBoldWhiteTextStyle,
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(

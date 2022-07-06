@@ -29,11 +29,24 @@ const TextStyle regularWhiteTextStyle = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
+const TextStyle italicWhiteTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 12,
+  fontStyle: FontStyle.italic,
+);
+const TextStyle underlineWhiteTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 12,
+  fontStyle: FontStyle.italic,
+  decoration: TextDecoration.underline,
+);
+
 const TextStyle titleWhiteTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 14,
   fontWeight: FontWeight.w600,
 );
+
 const TextStyle bigBoldWhiteTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 20,

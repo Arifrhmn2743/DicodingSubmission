@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
@@ -63,8 +64,9 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(40)),
+                            color: ColorPallet.lightPurple,
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(25)),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
@@ -73,7 +75,7 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
                               Center(
                                 child: Text(
                                   "General Data :",
-                                  style: titleTextStyle,
+                                  style: titleWhiteTextStyle,
                                 ),
                               ),
                               SizedBox(
@@ -86,15 +88,42 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: const [
-                                      Text("Other Name: "),
-                                      Text("Body Type: "),
-                                      Text("Discovered By:"),
-                                      Text("Moons: "),
-                                      Text("Mass: "),
-                                      Text("Volume: "),
-                                      Text("Gravity:"),
-                                      Text("Average Temp: ")
+                                      Text(
+                                        "Other Name: ",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Body Type: ",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Discovered By:",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Moons: ",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Mass: ",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Volume: ",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Gravity:",
+                                        style: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "Average Temp: ",
+                                        style: regularWhiteTextStyle,
+                                      )
                                     ],
+                                  ),
+                                  SizedBox(
+                                    width: 5,
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -104,44 +133,76 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
                                         value.solarSystemDetails?.name
                                                 .toString() ??
                                             "",
+                                        style: regularWhiteTextStyle,
                                       ),
                                       Text(
                                         value.solarSystemDetails?.bodyType
                                                 .toString() ??
                                             "",
+                                        style: regularWhiteTextStyle,
                                       ),
                                       Text(
                                         value.solarSystemDetails?.discoveredBy
                                                 .toString() ??
                                             "",
+                                        style: regularWhiteTextStyle,
                                       ),
                                       Text(
                                         value.solarSystemDetails?.moons?.length
                                                 .toString() ??
                                             "",
+                                        style: regularWhiteTextStyle,
                                       ),
-                                      RichText(
-                                          text: TextSpan(children: [
-                                        TextSpan(
-                                            text: value.solarSystemDetails?.mass
-                                                ?.massValue
-                                                .toString(),
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            )),
-                                        TextSpan(
-                                            text: value.solarSystemDetails?.mass
-                                                ?.massExponent
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontFeatures: [
-                                                  FontFeature.superscripts()
-                                                ]))
-                                      ])),
-                                      Text("Volume: "),
-                                      Text("Gravity:"),
-                                      Text("Average Temp: ")
+                                      EasyRichText(
+                                        "${value.solarSystemDetails?.mass?.massValue.toString()} x 10 ${value.solarSystemDetails?.mass?.massExponent.toString()} Kg",
+                                        patternList: [
+                                          EasyRichTextPattern(
+                                            targetString:
+                                                "${value.solarSystemDetails?.mass?.massExponent.toString()}",
+                                            superScript: true,
+                                            stringBeforeTarget: "x 10 ",
+                                            matchWordBoundaries: false,
+                                            style: regularWhiteTextStyle,
+                                          )
+                                        ],
+                                        defaultStyle: regularWhiteTextStyle,
+                                      ),
+                                      EasyRichText(
+                                        "${value.solarSystemDetails?.vol?.volValue.toString()} x 10 ${value.solarSystemDetails?.vol?.volExponent.toString()} Km 3",
+                                        patternList: [
+                                          EasyRichTextPattern(
+                                            targetString:
+                                                "${value.solarSystemDetails?.vol?.volExponent.toString()}",
+                                            superScript: true,
+                                            stringBeforeTarget: "x 10 ",
+                                            style: regularWhiteTextStyle,
+                                          ),
+                                          EasyRichTextPattern(
+                                            targetString: "3",
+                                            superScript: true,
+                                            stringBeforeTarget: "Km",
+                                            style: regularWhiteTextStyle,
+                                          )
+                                        ],
+                                        defaultStyle: regularWhiteTextStyle,
+                                      ),
+                                      EasyRichText(
+                                        "${value.solarSystemDetails?.gravity.toString()} m.s-2",
+                                        patternList: [
+                                          EasyRichTextPattern(
+                                            targetString: "-2",
+                                            superScript: true,
+                                            stringBeforeTarget: "m.s",
+                                            matchWordBoundaries: false,
+                                            style: regularWhiteTextStyle,
+                                          )
+                                        ],
+                                        defaultStyle: regularWhiteTextStyle,
+                                      ),
+                                      Text(
+                                        "${value.solarSystemDetails?.avgTemp.toString()} K",
+                                        style: regularWhiteTextStyle,
+                                      )
                                     ],
                                   )
                                 ],

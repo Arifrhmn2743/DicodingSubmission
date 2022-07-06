@@ -43,8 +43,7 @@ dependencies:
   store_redirect: ^2.0.1
   url_launcher: ^6.1.4
   flutter_launcher_icons: ^0.9.3
-  path_provider_ios: ^2.0.10
-  path_provider: ^2.0.11
+  easy_rich_text: ^1.1.0
 
 flutter_icons:
   android: "launcher_icon"
