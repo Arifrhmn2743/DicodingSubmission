@@ -103,19 +103,16 @@ class _ApodState extends State<Apod> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Copyright to: ${value.data?.copyright.toString()}",
-                                    style: titleWhiteTextStyle,
-                                  ),
-                                  Text(
-                                    "Date : ${value.data?.date.toString()}",
-                                    style: titleWhiteTextStyle,
-                                  ),
-                                ],
+                              Text(
+                                "Copyright to: ${value.data?.copyright.toString()}",
+                                style: titleWhiteTextStyle,
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                "Date : ${value.data?.date.toString()}",
+                                style: titleWhiteTextStyle,
                               ),
                               SizedBox(
                                 height: 16,
