@@ -4,6 +4,7 @@ import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/screen/screen2.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
+import 'package:explore_universe/widget/responsive.dart';
 import 'package:explore_universe/widget/topWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -25,7 +26,7 @@ class _Screen1State extends State<Screen1> {
     return Consumer<MainProvider>(builder: (context, value, child) {
       return Scaffold(
           floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: ColorPallet.lightPurple,
+            backgroundColor: ColorPallet.dark,
             onPressed: () {
               if (value.rocketName == "") {
                 Get.defaultDialog(
@@ -53,12 +54,12 @@ class _Screen1State extends State<Screen1> {
               ],
             ),
           ),
-          backgroundColor: ColorPallet.darkPurple,
+          backgroundColor: ColorPallet.primary,
           body: SafeArea(
               child: Column(
             children: [
               TopContainer(
-                  height: 200,
+                  height: ResponsiveWidget.isSmallScreen(context) ? 200 : 400,
                   width: MediaQuery.of(context).size.width,
                   child: LottieBuilder.network(
                     'https://assets4.lottiefiles.com/packages/lf20_yznfvm5w.json',
@@ -88,6 +89,7 @@ class _Screen1State extends State<Screen1> {
                         decoration: raisedDecoration,
                         child: Center(
                           child: TextField(
+                            autofocus: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Rocket name",

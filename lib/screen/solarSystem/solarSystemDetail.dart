@@ -45,7 +45,7 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
           style: bigBoldWhiteTextStyle,
         ),
       ),
-      backgroundColor: ColorPallet.darkPurple,
+      backgroundColor: ColorPallet.primary,
       body: Consumer<MainProvider>(builder: (context, value, child) {
         return SafeArea(
             child: SingleChildScrollView(
@@ -64,7 +64,7 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: ColorPallet.lightPurple,
+                            color: ColorPallet.light,
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(25)),
                         child: Padding(

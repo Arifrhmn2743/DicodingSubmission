@@ -5,6 +5,7 @@ import 'package:explore_universe/screen/references.dart';
 import 'package:explore_universe/screen/solarSystem/solarSystemPage.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
+import 'package:explore_universe/widget/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -22,7 +23,7 @@ class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorPallet.darkPurple,
+        backgroundColor: ColorPallet.primary,
         body: SingleChildScrollView(
           child: SafeArea(
             child: Column(
@@ -41,11 +42,14 @@ class _Screen2State extends State<Screen2> {
                                 style: bigBoldWhiteTextStyle,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () => Get.to(References()),
-                              child: Icon(
-                                Icons.help_outline_outlined,
-                                color: Colors.white,
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () => Get.to(References()),
+                                child: Icon(
+                                  Icons.help_outline_outlined,
+                                  color: Colors.white,
+                                ),
                               ),
                             )
                           ],
@@ -53,61 +57,56 @@ class _Screen2State extends State<Screen2> {
                         SizedBox(
                           height: 40,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image:
-                                    AssetImage("assets/images/galaxy_bg.jpg"),
-                                fit: BoxFit.fill,
-                                opacity: .8),
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => Get.to(BlackHolePage()),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/images/black_hole.png"),
+                                      fit: BoxFit.fill,
+                                      opacity: .5),
+                                ),
+                                height: ResponsiveWidget.isSmallScreen(context)
+                                    ? 150
+                                    : 500,
+                                child: Center(
+                                  child: Text(
+                                    "Black Hole",
+                                    style: bigBoldWhiteTextStyle,
+                                  ),
+                                )),
                           ),
-                          height: 150,
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        GestureDetector(
-                          onTap: () => Get.to(BlackHolePage()),
-                          child: Container(
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => Get.to(SolarSystemPage()),
+                            child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white),
                                 borderRadius: BorderRadius.circular(15),
                                 image: DecorationImage(
                                     image: AssetImage(
-                                        "assets/images/black_hole.png"),
+                                        "assets/images/solar_system.png"),
                                     fit: BoxFit.fill,
                                     opacity: .5),
                               ),
-                              height: 150,
+                              height: ResponsiveWidget.isSmallScreen(context)
+                                  ? 150
+                                  : 500,
                               child: Center(
                                 child: Text(
-                                  "Black Hole",
+                                  "Solar System ",
                                   style: bigBoldWhiteTextStyle,
                                 ),
-                              )),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        GestureDetector(
-                          onTap: () => Get.to(SolarSystemPage()),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/images/solar_system.png"),
-                                  fit: BoxFit.fill,
-                                  opacity: .5),
-                            ),
-                            height: 150,
-                            child: Center(
-                              child: Text(
-                                "Solar System ",
-                                style: bigBoldWhiteTextStyle,
                               ),
                             ),
                           ),
@@ -115,24 +114,29 @@ class _Screen2State extends State<Screen2> {
                         SizedBox(
                           height: 20,
                         ),
-                        GestureDetector(
-                          onTap: () => Get.to(Apod()),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/bg_cards4.jpg"),
-                                  fit: BoxFit.fill,
-                                  opacity: .8),
-                            ),
-                            height: 150,
-                            width: double.infinity,
-                            child: Center(
-                              child: Text(
-                                "APOD (Astronomy Picture of the Day)",
-                                style: bigBoldWhiteTextStyle,
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => Get.to(Apod()),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/bg_cards4.jpg"),
+                                    fit: BoxFit.fill,
+                                    opacity: .8),
+                              ),
+                              height: ResponsiveWidget.isSmallScreen(context)
+                                  ? 150
+                                  : 500,
+                              width: double.infinity,
+                              child: Center(
+                                child: Text(
+                                  "APOD (Astronomy Picture of the Day)",
+                                  style: bigBoldWhiteTextStyle,
+                                ),
                               ),
                             ),
                           ),

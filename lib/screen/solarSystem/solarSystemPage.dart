@@ -2,6 +2,7 @@ import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/screen/solarSystem/solarSystemDetail.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
+import 'package:explore_universe/widget/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,7 +15,7 @@ class SolarSystemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPallet.darkPurple,
+      backgroundColor: ColorPallet.primary,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -33,12 +34,19 @@ class SolarSystemPage extends StatelessWidget {
             child: Column(
               children: [
                 GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 2 / 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      crossAxisCount: 2,
-                    ),
+                    gridDelegate: ResponsiveWidget.isSmallScreen(context)
+                        ? SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 2 / 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            crossAxisCount: 2,
+                          )
+                        : SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 5 / 5,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            crossAxisCount: 5,
+                          ),
                     itemCount: value.solarSystemItems.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -57,7 +65,7 @@ class SolarSystemPage extends StatelessWidget {
                                 width: double.infinity,
                                 height: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: ColorPallet.lightPurple,
+                                  color: ColorPallet.light,
                                   border: Border.all(color: Colors.white),
                                   borderRadius: BorderRadius.circular(15),
                                 ),

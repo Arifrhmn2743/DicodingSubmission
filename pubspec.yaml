@@ -44,6 +44,7 @@ dependencies:
   url_launcher: ^6.1.4
   flutter_launcher_icons: ^0.9.3
   easy_rich_text: ^1.1.0
+  image_network: ^2.5.1
 
 flutter_icons:
   android: "launcher_icon"

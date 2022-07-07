@@ -1,12 +1,14 @@
 import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
+import 'package:explore_universe/widget/responsive.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
+import 'package:image_network/image_network.dart';
 import 'package:provider/provider.dart';
 
 class Apod extends StatefulWidget {
@@ -34,7 +36,7 @@ class _ApodState extends State<Apod> {
     return Consumer<MainProvider>(builder: (context, value, child) {
       var size = MediaQuery.of(context).size;
       return Scaffold(
-        backgroundColor: ColorPallet.darkPurple,
+        backgroundColor: ColorPallet.primary,
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
@@ -67,9 +69,18 @@ class _ApodState extends State<Apod> {
                             FullScreenWidget(
                               child: Hero(
                                 tag: "Photo",
-                                child: FancyShimmerImage(
-                                    boxFit: BoxFit.cover,
-                                    imageUrl: value.data?.url.toString() ?? ""),
+                                child: ResponsiveWidget.isSmallScreen(context)
+                                    ? FancyShimmerImage(
+                                        boxFit: BoxFit.cover,
+                                        imageUrl:
+                                            value.data?.url.toString() ?? "")
+                                    : value.isLoading == true
+                                        ? CircularProgressIndicator()
+                                        : ImageNetwork(
+                                            image: value.data?.url.toString() ??
+                                                "",
+                                            height: 400,
+                                            width: 400),
                               ),
                             ),
                             SizedBox(
@@ -84,7 +95,7 @@ class _ApodState extends State<Apod> {
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: ColorPallet.lightPurple,
+                            color: ColorPallet.light,
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(15)),
                         child: Padding(

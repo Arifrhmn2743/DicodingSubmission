@@ -1,6 +1,7 @@
 import 'package:explore_universe/screen/blackHole/blackHoleDetail.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
+import 'package:explore_universe/widget/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,7 +21,7 @@ class _BlackHolePageState extends State<BlackHolePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPallet.darkPurple,
+      backgroundColor: ColorPallet.primary,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -40,58 +41,68 @@ class _BlackHolePageState extends State<BlackHolePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 2 / 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      crossAxisCount: 2,
-                    ),
+                    gridDelegate: ResponsiveWidget.isSmallScreen(context)
+                        ? SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 2 / 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            crossAxisCount: 2,
+                          )
+                        : SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 5 / 5,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            crossAxisCount: 5,
+                          ),
                     itemCount: value.blackHole.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () => Get.to(BlackHoleDetail(
-                          id: value.blackHole[index].objectId,
-                          image: value.blackHole[index].objectImage,
-                          name: value.blackHole[index].objectName,
-                          desc: value.blackHole[index].objectDesc,
-                          link: value.blackHole[index].objectSource,
-                        )),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 50),
-                              child: Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: ColorPallet.lightPurple,
-                                  border: Border.all(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    value.blackHole[index].objectName,
-                                    style: bigBoldWhiteTextStyle,
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => Get.to(BlackHoleDetail(
+                            id: value.blackHole[index].objectId,
+                            image: value.blackHole[index].objectImage,
+                            name: value.blackHole[index].objectName,
+                            desc: value.blackHole[index].objectDesc,
+                            link: value.blackHole[index].objectSource,
+                          )),
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 50),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: ColorPallet.light,
+                                    border: Border.all(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      value.blackHole[index].objectName,
+                                      style: bigBoldWhiteTextStyle,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(81),
-                                child: Image.asset(
-                                  value.blackHole[index].objectImage,
-                                  width: 90,
-                                  height: 90,
+                              Positioned(
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(81),
+                                  child: Image.asset(
+                                    value.blackHole[index].objectImage,
+                                    width: 90,
+                                    height: 90,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     }),

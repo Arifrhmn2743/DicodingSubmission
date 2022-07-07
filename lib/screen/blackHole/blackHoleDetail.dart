@@ -39,7 +39,7 @@ class _BlackHoleDetailState extends State<BlackHoleDetail> {
           style: bigBoldWhiteTextStyle,
         ),
       ),
-      backgroundColor: ColorPallet.darkPurple,
+      backgroundColor: ColorPallet.primary,
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -54,7 +54,7 @@ class _BlackHoleDetailState extends State<BlackHoleDetail> {
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: ColorPallet.lightPurple,
+                  color: ColorPallet.light,
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(15)),
               child: Padding(
@@ -88,11 +88,14 @@ class _BlackHoleDetailState extends State<BlackHoleDetail> {
                           style: regularWhiteTextStyle,
                         ),
                         Expanded(
-                          child: GestureDetector(
-                            onTap: () => _launchUrl(Uri.parse(widget.link)),
-                            child: Text(
-                              widget.link,
-                              style: underlineWhiteTextStyle,
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => _launchUrl(Uri.parse(widget.link)),
+                              child: Text(
+                                widget.link,
+                                style: underlineWhiteTextStyle,
+                              ),
                             ),
                           ),
                         ),

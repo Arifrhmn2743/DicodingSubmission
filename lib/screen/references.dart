@@ -5,6 +5,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:store_redirect/store_redirect.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../model/links_model.dart';
 
@@ -27,7 +29,7 @@ class _ReferencesState extends State<References> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPallet.darkPurple,
+      backgroundColor: ColorPallet.primary,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -45,27 +47,31 @@ class _ReferencesState extends State<References> {
             child: Column(
               children: [
                 Text(
-                  "This application is highly inspired from Info Astronomy App. You can click this banner to check their app in playstore",
+                  "This application is highly inspired from Info Astronomy App. You can click this banner to check their website",
                   style: regularWhiteTextStyle,
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                GestureDetector(
-                  onTap: () =>
-                      _launchUrl(Uri.parse("https:/www.infoastronomy.org")),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                          image:
-                              AssetImage("assets/images/info_astronomy.webp"),
-                          fit: BoxFit.fill,
-                          opacity: .5),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      _launchUrl(Uri.parse("https:/www.infoastronomy.org"));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                            image:
+                                AssetImage("assets/images/info_astronomy.webp"),
+                            fit: BoxFit.fill,
+                            opacity: .5),
+                      ),
+                      height: 150,
+                      width: MediaQuery.of(context).size.width,
                     ),
-                    height: 150,
-                    width: MediaQuery.of(context).size.width,
                   ),
                 ),
                 SizedBox(
@@ -80,18 +86,21 @@ class _ReferencesState extends State<References> {
                     physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(horizontal: 24.0),
                     itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(
-                          link[index].name.toString(),
-                          style: regularWhiteTextStyle,
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: ListTile(
+                          title: Text(
+                            link[index].name.toString(),
+                            style: regularWhiteTextStyle,
+                          ),
+                          trailing: Icon(
+                            Icons.arrow_right_rounded,
+                            color: Colors.white,
+                          ),
+                          onTap: () {
+                            _launchUrl(Uri.parse(link[index].link));
+                          },
                         ),
-                        trailing: Icon(
-                          Icons.arrow_right_rounded,
-                          color: Colors.white,
-                        ),
-                        onTap: () {
-                          _launchUrl(Uri.parse(link[index].link));
-                        },
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {
@@ -111,19 +120,22 @@ class _ReferencesState extends State<References> {
                 SizedBox(
                   height: 20,
                 ),
-                GestureDetector(
-                  onTap: () => _launchUrl(Uri.parse("https://api.nasa.gov/")),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/apod.jpeg"),
-                          fit: BoxFit.fill,
-                          opacity: .5),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => _launchUrl(Uri.parse("https://api.nasa.gov/")),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/apod.jpeg"),
+                            fit: BoxFit.fill,
+                            opacity: .5),
+                      ),
+                      height: 150,
+                      width: MediaQuery.of(context).size.width,
                     ),
-                    height: 150,
-                    width: MediaQuery.of(context).size.width,
                   ),
                 ),
                 SizedBox(
@@ -136,21 +148,24 @@ class _ReferencesState extends State<References> {
                 SizedBox(
                   height: 20,
                 ),
-                GestureDetector(
-                  onTap: () => _launchUrl(
-                      Uri.parse("https://api.le-systeme-solaire.net/en/")),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                          image:
-                              AssetImage("assets/images/solar_system_api.png"),
-                          fit: BoxFit.fill,
-                          opacity: .5),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => _launchUrl(
+                        Uri.parse("https://api.le-systeme-solaire.net/en/")),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/images/solar_system_api.png"),
+                            fit: BoxFit.fill,
+                            opacity: .5),
+                      ),
+                      height: 150,
+                      width: MediaQuery.of(context).size.width,
                     ),
-                    height: 150,
-                    width: MediaQuery.of(context).size.width,
                   ),
                 ),
               ],
