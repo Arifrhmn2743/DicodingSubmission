@@ -74,7 +74,7 @@ class SolarSystemDetails {
     if (json['moons'] != null) {
       moons = <Moons>[];
       json['moons'].forEach((v) {
-        moons!.add(new Moons.fromJson(v));
+        moons!.add(Moons.fromJson(v));
       });
     }
     semimajorAxis = json['semimajorAxis'];
@@ -82,8 +82,8 @@ class SolarSystemDetails {
     aphelion = json['aphelion'];
     eccentricity = json['eccentricity'];
     inclination = json['inclination'];
-    mass = json['mass'] != null ? new Mass.fromJson(json['mass']) : null;
-    vol = json['vol'] != null ? new Vol.fromJson(json['vol']) : null;
+    mass = json['mass'] != null ? Mass.fromJson(json['mass']) : null;
+    vol = json['vol'] != null ? Vol.fromJson(json['vol']) : null;
     density = json['density'];
     gravity = json['gravity'];
     escape = json['escape'];
@@ -107,45 +107,45 @@ class SolarSystemDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['englishName'] = this.englishName;
-    data['isPlanet'] = this.isPlanet;
-    if (this.moons != null) {
-      data['moons'] = this.moons!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['englishName'] = englishName;
+    data['isPlanet'] = isPlanet;
+    if (moons != null) {
+      data['moons'] = moons!.map((v) => v.toJson()).toList();
     }
-    data['semimajorAxis'] = this.semimajorAxis;
-    data['perihelion'] = this.perihelion;
-    data['aphelion'] = this.aphelion;
-    data['eccentricity'] = this.eccentricity;
-    data['inclination'] = this.inclination;
-    if (this.mass != null) {
-      data['mass'] = this.mass!.toJson();
+    data['semimajorAxis'] = semimajorAxis;
+    data['perihelion'] = perihelion;
+    data['aphelion'] = aphelion;
+    data['eccentricity'] = eccentricity;
+    data['inclination'] = inclination;
+    if (mass != null) {
+      data['mass'] = mass!.toJson();
     }
-    if (this.vol != null) {
-      data['vol'] = this.vol!.toJson();
+    if (vol != null) {
+      data['vol'] = vol!.toJson();
     }
-    data['density'] = this.density;
-    data['gravity'] = this.gravity;
-    data['escape'] = this.escape;
-    data['meanRadius'] = this.meanRadius;
-    data['equaRadius'] = this.equaRadius;
-    data['polarRadius'] = this.polarRadius;
-    data['flattening'] = this.flattening;
-    data['dimension'] = this.dimension;
-    data['sideralOrbit'] = this.sideralOrbit;
-    data['sideralRotation'] = this.sideralRotation;
-    data['aroundPlanet'] = this.aroundPlanet;
-    data['discoveredBy'] = this.discoveredBy;
-    data['discoveryDate'] = this.discoveryDate;
-    data['alternativeName'] = this.alternativeName;
-    data['axialTilt'] = this.axialTilt;
-    data['avgTemp'] = this.avgTemp;
-    data['mainAnomaly'] = this.mainAnomaly;
-    data['argPeriapsis'] = this.argPeriapsis;
-    data['longAscNode'] = this.longAscNode;
-    data['bodyType'] = this.bodyType;
+    data['density'] = density;
+    data['gravity'] = gravity;
+    data['escape'] = escape;
+    data['meanRadius'] = meanRadius;
+    data['equaRadius'] = equaRadius;
+    data['polarRadius'] = polarRadius;
+    data['flattening'] = flattening;
+    data['dimension'] = dimension;
+    data['sideralOrbit'] = sideralOrbit;
+    data['sideralRotation'] = sideralRotation;
+    data['aroundPlanet'] = aroundPlanet;
+    data['discoveredBy'] = discoveredBy;
+    data['discoveryDate'] = discoveryDate;
+    data['alternativeName'] = alternativeName;
+    data['axialTilt'] = axialTilt;
+    data['avgTemp'] = avgTemp;
+    data['mainAnomaly'] = mainAnomaly;
+    data['argPeriapsis'] = argPeriapsis;
+    data['longAscNode'] = longAscNode;
+    data['bodyType'] = bodyType;
     return data;
   }
 }
@@ -162,9 +162,9 @@ class Moons {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['moon'] = this.moon;
-    data['rel'] = this.rel;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['moon'] = moon;
+    data['rel'] = rel;
     return data;
   }
 }
@@ -181,9 +181,9 @@ class Mass {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['massValue'] = this.massValue;
-    data['massExponent'] = this.massExponent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['massValue'] = massValue;
+    data['massExponent'] = massExponent;
     return data;
   }
 }
@@ -200,9 +200,9 @@ class Vol {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['volValue'] = this.volValue;
-    data['volExponent'] = this.volExponent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['volValue'] = volValue;
+    data['volExponent'] = volExponent;
     return data;
   }
 }

@@ -30,15 +30,15 @@ class Apod {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['copyright'] = this.copyright;
-    data['date'] = this.date;
-    data['explanation'] = this.explanation;
-    data['hdurl'] = this.hdurl;
-    data['media_type'] = this.mediaType;
-    data['service_version'] = this.serviceVersion;
-    data['title'] = this.title;
-    data['url'] = this.url;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['copyright'] = copyright;
+    data['date'] = date;
+    data['explanation'] = explanation;
+    data['hdurl'] = hdurl;
+    data['media_type'] = mediaType;
+    data['service_version'] = serviceVersion;
+    data['title'] = title;
+    data['url'] = url;
     return data;
   }
 }

@@ -4,8 +4,6 @@ import 'package:explore_universe/utils/const.dart';
 import 'package:explore_universe/widget/responsive.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
 import 'package:image_network/image_network.dart';
@@ -26,7 +24,6 @@ class _ApodState extends State<Apod> {
 
   @override
   void initState() {
-    // TODO: implement initState
     getData();
     super.initState();
   }
@@ -34,7 +31,6 @@ class _ApodState extends State<Apod> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MainProvider>(builder: (context, value, child) {
-      var size = MediaQuery.of(context).size;
       return Scaffold(
         backgroundColor: ColorPallet.primary,
         appBar: AppBar(
