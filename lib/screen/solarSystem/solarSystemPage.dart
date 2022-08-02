@@ -51,43 +51,46 @@ class SolarSystemPage extends StatelessWidget {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () => Get.to(SolarSystemDetail(
-                          id: value.solarSystemItems[index].objectId,
-                          image: value.solarSystemItems[index].objectImage,
-                          name: value.solarSystemItems[index].objectName,
-                        )),
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 50),
-                              child: Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: ColorPallet.light,
-                                  border: Border.all(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    value.solarSystemItems[index].objectName,
-                                    style: bigBoldWhiteTextStyle,
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => Get.to(SolarSystemDetail(
+                            id: value.solarSystemItems[index].objectId,
+                            image: value.solarSystemItems[index].objectImage,
+                            name: value.solarSystemItems[index].objectName,
+                          )),
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 50),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: ColorPallet.light,
+                                    border: Border.all(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      value.solarSystemItems[index].objectName,
+                                      style: bigBoldWhiteTextStyle,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              child: Image.asset(
-                                value.solarSystemItems[index].objectImage,
-                                width: 90,
-                                height: 90,
+                              Positioned(
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                child: Image.asset(
+                                  value.solarSystemItems[index].objectImage,
+                                  width: 90,
+                                  height: 90,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     })
