@@ -7,6 +7,7 @@ import 'package:explore_universe/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class SolarSystemDetail extends StatefulWidget {
@@ -19,7 +20,10 @@ class SolarSystemDetail extends StatefulWidget {
   State<SolarSystemDetail> createState() => _SolarSystemDetailState();
 }
 
-class _SolarSystemDetailState extends State<SolarSystemDetail> {
+class _SolarSystemDetailState extends State<SolarSystemDetail>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller;
+
   void getData(String id) async {
     final getData = Provider.of<MainProvider>(context, listen: false);
     await getData.getDetailSolarSystem(id);
@@ -29,6 +33,9 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+    );
     getData(widget.id);
   }
 
@@ -52,7 +59,20 @@ class _SolarSystemDetailState extends State<SolarSystemDetail> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: value.isLoading == true
-                ? Center(child: CircularProgressIndicator())
+                ? Center(
+                    child: LottieBuilder.asset(
+                    "assets/images/loading-rocket.json",
+                    controller: _controller,
+                    onLoaded: (composition) {
+                      _controller
+                        ..duration = composition.duration
+                        ..forward().whenComplete(() {
+                          setState(() {
+                            value.isLoading = false;
+                          });
+                        });
+                    },
+                  ))
                 : Column(
                     children: [
                       Image.asset(

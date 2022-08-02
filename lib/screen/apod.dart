@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
 import 'package:image_network/image_network.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class Apod extends StatefulWidget {
@@ -16,7 +17,8 @@ class Apod extends StatefulWidget {
   State<Apod> createState() => _ApodState();
 }
 
-class _ApodState extends State<Apod> {
+class _ApodState extends State<Apod> with TickerProviderStateMixin {
+  late final AnimationController _controller;
   void getData() async {
     final getData = Provider.of<MainProvider>(context, listen: false);
     await getData.getApod();
@@ -24,6 +26,9 @@ class _ApodState extends State<Apod> {
 
   @override
   void initState() {
+    _controller = AnimationController(
+      vsync: this,
+    );
     getData();
     super.initState();
   }
@@ -49,7 +54,20 @@ class _ApodState extends State<Apod> {
                   child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: value.isLoading == true
-                ? Center(child: CircularProgressIndicator())
+                ? Center(
+                    child: LottieBuilder.asset(
+                    "assets/images/loading-rocket.json",
+                    controller: _controller,
+                    onLoaded: (composition) {
+                      _controller
+                        ..duration = composition.duration
+                        ..forward().whenComplete(() {
+                          setState(() {
+                            value.isLoading = false;
+                          });
+                        });
+                    },
+                  ))
                 : Column(
                     children: [
                       Center(

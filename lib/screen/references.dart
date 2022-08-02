@@ -1,14 +1,7 @@
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:store_redirect/store_redirect.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb;
-
-import '../model/links_model.dart';
 
 class References extends StatefulWidget {
   const References({Key? key}) : super(key: key);
@@ -18,12 +11,8 @@ class References extends StatefulWidget {
 }
 
 class _ReferencesState extends State<References> {
-  static List<Links> link = [
-    Links(name: "Freepik", link: "http://www.freepik.com"),
-    Links(name: "antonioli / Freepik", link: "http://www.freepik.com")
-  ];
-  void _launchUrl(_url) async {
-    if (!await launchUrl(_url)) throw 'Could not launch $_url';
+  void _launchUrl(url) async {
+    if (!await launchUrl(url)) throw 'Could not launch $url';
   }
 
   @override
@@ -74,42 +63,6 @@ class _ReferencesState extends State<References> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "For icons and pictures, I get it from freepik and pexels. Here is the links:",
-                  style: regularWhiteTextStyle,
-                ),
-                ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.symmetric(horizontal: 24.0),
-                    itemBuilder: (BuildContext context, int index) {
-                      return MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: ListTile(
-                          title: Text(
-                            link[index].name.toString(),
-                            style: regularWhiteTextStyle,
-                          ),
-                          trailing: Icon(
-                            Icons.arrow_right_rounded,
-                            color: Colors.white,
-                          ),
-                          onTap: () {
-                            _launchUrl(Uri.parse(link[index].link));
-                          },
-                        ),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Divider(
-                        thickness: 1,
-                        color: Colors.white,
-                      );
-                    },
-                    itemCount: link.length),
                 SizedBox(
                   height: 20,
                 ),

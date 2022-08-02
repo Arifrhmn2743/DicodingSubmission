@@ -1,7 +1,5 @@
 import 'package:explore_universe/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/colors.dart';

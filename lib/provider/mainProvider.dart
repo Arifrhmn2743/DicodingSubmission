@@ -31,7 +31,7 @@ class MainProvider with ChangeNotifier {
     } catch (e) {
       print(e);
     }
-    isLoading = false;
+    // isLoading = false;
     notifyListeners();
   }
 
@@ -45,7 +45,7 @@ class MainProvider with ChangeNotifier {
     } catch (e) {
       print(e);
     }
-    isLoading = false;
+    // isLoading = false;
     notifyListeners();
   }
 
