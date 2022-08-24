@@ -40,7 +40,6 @@ dependencies:
   dio: ^4.0.6
   fancy_shimmer_image: ^2.0.2
   full_screen_image_null_safe: ^2.0.0
-  store_redirect: ^2.0.1
   url_launcher: ^6.1.4
   flutter_launcher_icons: ^0.9.3
   easy_rich_text: ^1.1.0
