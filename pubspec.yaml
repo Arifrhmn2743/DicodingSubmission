@@ -47,6 +47,7 @@ dependencies:
   firebase_core: ^1.21.1
   firebase_auth: ^3.7.0
   google_sign_in: ^5.4.1
+  auth_buttons: ^3.0.0
 
 flutter_icons:
   android: "launcher_icon"

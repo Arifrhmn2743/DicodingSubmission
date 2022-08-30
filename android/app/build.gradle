@@ -66,12 +66,12 @@ flutter {
     source '../..'
 }
 
-plugins {
-  id 'com.android.application'
+// plugins {
+//   id 'com.android.application'
 
-  // Add the Google services Gradle plugin
-  id 'com.google.gms.google-services'
-}
+//   // Add the Google services Gradle plugin
+//   id 'com.google.gms.google-services'
+// }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

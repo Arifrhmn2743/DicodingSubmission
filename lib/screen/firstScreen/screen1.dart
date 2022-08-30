@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:auth_buttons/auth_buttons.dart';
 import 'package:explore_universe/provider/mainProvider.dart';
 import 'package:explore_universe/screen/screen2.dart';
 import 'package:explore_universe/utils/colors.dart';
@@ -36,6 +37,10 @@ class _Screen1State extends State<Screen1> {
                     'https://assets4.lottiefiles.com/packages/lf20_yznfvm5w.json',
                     fit: BoxFit.fill,
                   )),
+              SizedBox(height: 20),
+              GoogleAuthButton(
+                onPressed: () {},
+              )
             ],
           )));
     });
