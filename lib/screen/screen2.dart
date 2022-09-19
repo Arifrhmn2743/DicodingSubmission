@@ -38,7 +38,7 @@ class _Screen2State extends State<Screen2> {
                           children: [
                             Expanded(
                               child: Text(
-                                "Let's explore together, ${value.rocketName.toUpperCase()} !",
+                                "Let's explore together,  !",
                                 style: bigBoldWhiteTextStyle,
                               ),
                             ),

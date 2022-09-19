@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:explore_universe/model/black_hole_model.dart';
 import 'package:explore_universe/model/solar_system_detail_model.dart';
 import 'package:explore_universe/model/solar_system_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:explore_universe/utils/const.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../model/apod_model.dart';
 
@@ -12,14 +14,19 @@ class MainProvider with ChangeNotifier {
   SolarSystemDetails? solarSystemDetails;
   bool isLoading = true;
   late String _rocketName;
-  String get rocketName {
-    return _rocketName;
-  }
+  final googleSignin = GoogleSignIn();
+  GoogleSignInAccount? _user;
 
-  void setRocketName(String name) {
-    _rocketName = name;
-    notifyListeners();
-  }
+  GoogleSignInAccount get user => _user!;
+
+  // String get rocketName {
+  //   return _rocketName;
+  // }
+
+  // void setRocketName(String name) {
+  //   _rocketName = name;
+  //   notifyListeners();
+  // }
 
   Future<void> getApod() async {
     isLoading = true;
@@ -113,7 +120,28 @@ class MainProvider with ChangeNotifier {
         objectSource:
             "https://www.britannica.com/place/Sagittarius-A-astronomy")
   ];
+
   List<BlackHole> get blackHole {
     return [..._blackHole];
+  }
+
+  Future<void> googleLogin() async {
+    // isLoading = true;
+    try {
+      final googleUser = await googleSignin.signIn();
+      if (googleUser == null) {
+        return;
+      }
+      _user = googleUser;
+      print(_user!.displayName.toString());
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      print(e);
+    }
+
+    notifyListeners();
   }
 }

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -28,20 +29,25 @@ class _Screen1State extends State<Screen1> {
       return Scaffold(
           backgroundColor: ColorPallet.primary,
           body: SafeArea(
-              child: Column(
-            children: [
-              TopContainer(
-                  height: ResponsiveWidget.isSmallScreen(context) ? 200 : 400,
-                  width: MediaQuery.of(context).size.width,
-                  child: LottieBuilder.network(
-                    'https://assets4.lottiefiles.com/packages/lf20_yznfvm5w.json',
-                    fit: BoxFit.fill,
-                  )),
-              SizedBox(height: 20),
-              GoogleAuthButton(
-                onPressed: () {},
-              )
-            ],
+              child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TopContainer(
+                    height: ResponsiveWidget.isSmallScreen(context) ? 200 : 400,
+                    width: MediaQuery.of(context).size.width,
+                    child: LottieBuilder.network(
+                      'https://assets4.lottiefiles.com/packages/lf20_yznfvm5w.json',
+                      fit: BoxFit.fill,
+                    )),
+                SizedBox(height: 30),
+                GoogleAuthButton(
+                  onPressed: () {
+                    value.googleLogin();
+                    // Get.to(Screen2());
+                  },
+                )
+              ],
+            ),
           )));
     });
   }
