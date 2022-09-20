@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const TextStyle regularWhiteTextStyle = TextStyle(
   color: Colors.white,
-  fontSize: 12,
+  fontSize: 14,
   fontWeight: FontWeight.w400,
 );
 
@@ -20,7 +20,7 @@ const TextStyle underlineWhiteTextStyle = TextStyle(
 
 const TextStyle titleWhiteTextStyle = TextStyle(
   color: Colors.white,
-  fontSize: 14,
+  fontSize: 18,
   fontWeight: FontWeight.w600,
 );
 

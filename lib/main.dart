@@ -1,4 +1,5 @@
 import 'package:explore_universe/provider/mainProvider.dart';
+import 'package:explore_universe/screen/firstScreen/homepage.dart';
 import 'package:explore_universe/screen/firstScreen/screen1.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.grey,
           ),
-          home: Screen1(),
+          home: HomePage(),
         ),
       ),
     );

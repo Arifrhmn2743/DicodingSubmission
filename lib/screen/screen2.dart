@@ -6,6 +6,7 @@ import 'package:explore_universe/screen/solarSystem/solarSystemPage.dart';
 import 'package:explore_universe/utils/colors.dart';
 import 'package:explore_universe/utils/const.dart';
 import 'package:explore_universe/widget/responsive.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,6 +21,7 @@ class Screen2 extends StatefulWidget {
 }
 
 class _Screen2State extends State<Screen2> {
+  final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,9 @@ class _Screen2State extends State<Screen2> {
                           children: [
                             Expanded(
                               child: Text(
-                                "Let's explore together,  !",
+                                user!.displayName != null
+                                    ? "Hello,  ${user!.displayName}!"
+                                    : "Hello, ",
                                 style: bigBoldWhiteTextStyle,
                               ),
                             ),

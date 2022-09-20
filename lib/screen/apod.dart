@@ -37,119 +37,90 @@ class _ApodState extends State<Apod> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Consumer<MainProvider>(builder: (context, value, child) {
       return Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: ColorPallet.primary,
         appBar: AppBar(
           elevation: 0,
-          centerTitle: true,
           backgroundColor: Colors.transparent,
           iconTheme: IconThemeData(color: Colors.white),
-          title: Text(
-            "APOD",
-            style: bigBoldWhiteTextStyle,
-          ),
         ),
-        body: Consumer<MainProvider>(builder: (context, value, child) {
-          return SafeArea(
-              child: SingleChildScrollView(
-                  child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: value.isLoading == true
-                ? Center(
-                    child: LottieBuilder.asset(
-                    "assets/images/loading-rocket.json",
-                    controller: _controller,
-                    onLoaded: (composition) {
-                      _controller
-                        ..duration = composition.duration
-                        ..forward().whenComplete(() {
-                          setState(() {
-                            value.isLoading = false;
-                          });
-                        });
-                    },
-                  ))
-                : Column(
-                    children: [
-                      Center(
+        body: value.isLoading == true
+            ? Center(
+                child: LottieBuilder.asset(
+                "assets/images/loading-rocket.json",
+                controller: _controller,
+                onLoaded: (composition) {
+                  _controller
+                    ..duration = composition.duration
+                    ..forward().whenComplete(() {
+                      setState(() {
+                        value.isLoading = false;
+                      });
+                    });
+                },
+              ))
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        ResponsiveWidget.isSmallScreen(context)
+                            ? FancyShimmerImage(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height / 2,
+                                boxFit: BoxFit.fill,
+                                imageUrl: value.data?.url.toString() ?? "")
+                            : ImageNetwork(
+                                image: value.data?.url.toString() ?? "",
+                                height: 400,
+                                width: 400),
+                        Positioned(
+                          top: 380,
+                          left: 8,
+                          child: Text(
+                            value.data?.title.toString() ?? "",
+                            style: titleWhiteTextStyle,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: ColorPallet.light,
+                          borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(40.0),
+                            topRight: const Radius.circular(40.0),
+                          )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              value.data?.title.toString() ?? "",
+                              "Description",
                               style: titleWhiteTextStyle,
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 16,
                             ),
-                            FullScreenWidget(
-                              child: Hero(
-                                tag: "Photo",
-                                child: ResponsiveWidget.isSmallScreen(context)
-                                    ? FancyShimmerImage(
-                                        boxFit: BoxFit.cover,
-                                        imageUrl:
-                                            value.data?.url.toString() ?? "")
-                                    : value.isLoading == true
-                                        ? CircularProgressIndicator()
-                                        : ImageNetwork(
-                                            image: value.data?.url.toString() ??
-                                                "",
-                                            height: 400,
-                                            width: 400),
-                              ),
+                            Text(
+                              value.data?.explanation ?? "",
+                              style: regularWhiteTextStyle,
                             ),
                             SizedBox(
-                              height: 8,
-                            )
+                              height: 16,
+                            ),
+                            Text(
+                              "Copyright : ${value.data?.copyright.toString()}, ${value.data?.date.toString()}",
+                              style: titleWhiteTextStyle,
+                            ),
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: ColorPallet.light,
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Copyright to: ${value.data?.copyright.toString()}",
-                                style: titleWhiteTextStyle,
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Text(
-                                "Date : ${value.data?.date.toString()}",
-                                style: titleWhiteTextStyle,
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Text(
-                                "Description :",
-                                style: titleWhiteTextStyle,
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Text(
-                                value.data?.explanation ?? "",
-                                style: regularWhiteTextStyle,
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-          )));
-        }),
+                    )
+                  ],
+                ),
+              ),
       );
     });
   }
