@@ -38,7 +38,7 @@ var raisedDecoration = BoxDecoration(
 );
 
 //please use your legal api from https://api.nasa.gov/
-const String apiKey = "bXxhKpHeLZRUbf1Iteh7wkTNiMgQGQSpAsvbCnI8";
+const String apiKey = "";
 
 const String linkApiApod = "https://api.nasa.gov/planetary/apod/";
 
